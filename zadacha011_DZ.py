@@ -28,13 +28,12 @@
 # Зенит:2 1 0 1 3
 # Локомотив:2 2 0 0 6
 
-from itertools import count
-from unittest import result
+
 
 inputResults = [['Спартак', 9, 'Зенит', 10], ['Локомотив', 12, 'Зенит', 3], ['Спартак', 8, 'Локомотив', 15]]
-# N = int(input('Введите число завершенных игр: '))
 
-# def InputResults(N):
+# N = int(input('Введите число завершенных игр: '))
+# def InputResults(N):                                         # Функция ввода данных
 #     results = []
 #     for i in range (0, N):
 #         results.append(input().replace(' ', '').split(';'))
@@ -49,15 +48,51 @@ inputResults = [['Спартак', 9, 'Зенит', 10], ['Локомотив', 
 #         count(item)
 
 # inputResults = InputResults(N)
+print('Исходные данные: ')
 print(inputResults)
 
+# формирование общего списка
 ObshiySpisok = []
 for i in range(0, len(inputResults)):
     for j in range (0, len(inputResults[i])):
         ObshiySpisok.append(inputResults[i][j])
+print('Общий список: ')
+print(ObshiySpisok)
 
-SetObshiySpisok = set(ObshiySpisok)
+# Формирование уникального списка
+UnikalniyObshiySpisok = set(ObshiySpisok)
 
-# count = inputResults.count(['Спартак', 9, 'Зенит', 10])
+# Формирование команд и "игр всего сыграно"
+komandy = []
+igry_vsego = []
+for i in UnikalniyObshiySpisok:
+    if type(i) == str:
+        komandy.append(i)
+        igry_vsego.append(ObshiySpisok.count(i))
 
-print(SetObshiySpisok)
+# Подсчет побед
+ochkov_vsego = []
+ochkov_vsego_temp = []
+for j in komandy:
+    for i in range(0, len(ObshiySpisok) - 1):
+        if ObshiySpisok[i] == j:
+            ochkov_vsego_temp.append(ObshiySpisok[i+1])
+ochkov_vsego = [ochkov_vsego_temp[i] + ochkov_vsego_temp[i+1] for i in range(0, len(ochkov_vsego_temp)-1) if i%2 == 0] 
+
+
+
+pobedy = []
+for i in komandy:
+    
+
+
+
+
+print('Команды: ')
+print(komandy)
+print('Всего игр: ')
+print(igry_vsego)
+print('Очков всего: ')
+print(ochkov_vsego)
+
+# print(UnikalniyObshiySpisok)
